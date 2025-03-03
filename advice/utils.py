@@ -1,13 +1,17 @@
 from transformers import pipeline
 
 # Load the model pipeline
-qa_pipeline = pipeline("text2text-generation", model="google/flan-t5-small")
+qa_pipeline = pipeline("text2text-generation", model="google/flan-t5-large")
 
 def get_gardening_advice(question):
-    # Generate gardening advice using the model
-    prompt = f"Provide gardening advice: {question}"
-    response = qa_pipeline(prompt, max_length=100, do_sample=True)
+    # Refined prompt for detailed gardening advice
+    prompt = f"Provide a detailed gardening advice with steps, tips, and potential challenges: {question}"
+    
+    # Generate more detailed advice with a larger max_length
+    response = qa_pipeline(prompt, max_length=500, do_sample=False, temperature=0.7)
     return response[0]['generated_text']
+
+
 
 # from transformers import AutoModelForCausalLM, AutoTokenizer
 

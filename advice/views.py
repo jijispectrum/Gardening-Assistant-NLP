@@ -64,7 +64,7 @@ def user_logout(request):
     messages.success(request, 'Logged out successfully!')
     return redirect('index')
 from django.shortcuts import render
-from .models import ChatHistory
+# from .models import ChatHistory
 
 def chat_history(request):
     chat_history = Query.objects.filter(user=request.user).order_by('-timestamp')
